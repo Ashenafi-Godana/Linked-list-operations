@@ -1,6 +1,6 @@
 # LinkedList and Stack Implementation
 
-This project demonstrates the implementation of a LinkedList and a Stack  data structure using LinkedList in Java.
+This project demonstrates the implementation of a LinkedList and a Stack data structure using LinkedList in Java.
 
 ## Files
 
@@ -41,3 +41,4 @@ stack.push(60);
 // Popping elements from the stack
 int poppedElement = stack.pop();
 # Linked-list-operations
+```
