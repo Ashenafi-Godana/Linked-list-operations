@@ -1,42 +1,116 @@
+/**
+ * Class representing a stack using a linked list.
+ */
 public class Stack {
-    private LinkedList list;
+    private Node head;
 
+    /**
+     * Constructor to initialize the stack.
+     * The stack is initially empty.
+     */
     public Stack() {
-        list = new LinkedList();
+        this.head = null;
     }
 
-    // Method to push an element onto the stack
+    /**
+     * Check if the stack is empty.
+     * 
+     * @return true if the stack is empty, false otherwise.
+     */
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    /**
+     * Push a new element onto the stack.
+     * 
+     * @param data The data to be pushed onto the stack.
+     */
     public void push(int data) {
-        list.insertAt(data, 1); // Insert at the beginning of the list (top of the stack)
-    }
+        Node newNode = new Node(data);
 
-    // Method to pop an element from the stack
-    public int pop() {
-        if (isEmpty()) {
-            System.out.println("Stack underflow");
-            return -1; // or throw an exception
+        if (head == null) {
+            head = newNode;
+            return;
         }
-        int data = list.head.data; // Store the data at the top of the stack
-        list.deleteFrom(1); // Delete the top node
-        return data;
+
+        newNode.next = null;
+        Node current = head;
+
+        while (current.next != null) {
+            current = current.next;
+        }   
+        current.next = newNode;
+
+        System.out.println("Pushed " + data + " onto the stack.");
     }
 
-    // Method to peek the top element of the stack
+    /**
+     * Pop the top element from the stack.
+     * 
+     * @return The data of the popped element. Returns -1 if the stack is empty.
+     */
+    public int pop() {
+
+        // check if the list is empty
+        if (isEmpty()) {
+            System.out.println("Stack is empty. Cannot pop.");
+            return -1;
+        }
+        // if there is only one node in the list
+        if (head.next == null) {
+            head = null;
+        }
+        else 
+        {
+            Node current = head;
+            // traverse the list to find the second-to-last node
+            while (current.next.next != null) {
+                current = current.next;
+            }
+            // set the next of the second-to-last node to null
+            int result = current.next.data;
+            current.next = null;
+            return result;
+        }
+        return -1;
+
+    }
+
+    /**
+     * Peek at the top element of the stack without removing it.
+     * 
+     * @return The data of the top element. Returns -1 if the stack is empty.
+     */
     public int peek() {
         if (isEmpty()) {
-            System.out.println("Stack is empty");
-            return -1; // or throw an exception
+            System.out.println("Stack is empty. Cannot peek.");
+            return -1;
         }
-        return list.head.data;
+        // if there is only one node in the list
+        if (head.next == null) {
+            return head.data;
+        }
+        else 
+        {
+            Node current = head;
+            // traverse the list to find the last node
+            while (current.next != null) {
+                current = current.next;
+            }
+            return current.data;
+        }
     }
 
-    // Method to check if the stack is empty
-    public boolean isEmpty() {
-        return list.head == null;
-    }
-
-    // Method to display the elements of the stack
+    /**
+     * Display all elements in the stack from top to bottom.
+     */
     public void display() {
-        list.display(); // Display the contents of the linked list
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
     }
 }
