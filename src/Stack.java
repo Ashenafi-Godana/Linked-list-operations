@@ -2,6 +2,7 @@
  * Class representing a stack using a linked list.
  */
 public class Stack {
+    /** The head node of the linked list representing the stack. */
     private Node head;
 
     /**
@@ -39,7 +40,7 @@ public class Stack {
 
         while (current.next != null) {
             current = current.next;
-        }   
+        }
         current.next = newNode;
 
         System.out.println("Pushed " + data + " onto the stack.");
@@ -59,10 +60,10 @@ public class Stack {
         }
         // if there is only one node in the list
         if (head.next == null) {
+            int data = head.data;
             head = null;
-        }
-        else 
-        {
+            return data;
+        } else {
             Node current = head;
             // traverse the list to find the second-to-last node
             while (current.next.next != null) {
@@ -73,8 +74,6 @@ public class Stack {
             current.next = null;
             return result;
         }
-        return -1;
-
     }
 
     /**
@@ -90,9 +89,7 @@ public class Stack {
         // if there is only one node in the list
         if (head.next == null) {
             return head.data;
-        }
-        else 
-        {
+        } else {
             Node current = head;
             // traverse the list to find the last node
             while (current.next != null) {
